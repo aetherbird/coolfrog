@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://o5o3ltcc5b7x"]
+
+[ext_resource type="Script" path="res://scenes/levels/Pause.gd" id="1_ni1f5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ej34t"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo4jg"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Pause" type="Node"]
+script = ExtResource("1_ni1f5")
+
+[node name="PausePanel" type="Panel" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -70.0
+offset_right = 104.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -20.0
+offset_right = 148.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="Button" parent="PausePanel/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ej34t")
+text = "Resume"
+
+[node name="Menu" type="Button" parent="PausePanel/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oo4jg")
+text = "Main Menu"
+
+[connection signal="pressed" from="PausePanel/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PausePanel/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
