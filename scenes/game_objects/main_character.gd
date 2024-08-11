@@ -10,6 +10,12 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func jump():
 	velocity.y = JUMP_VELOCITY
+	
+func jump_side(x):
+	yield(get_tree().create_timer(0.1), "timeout")
+	velocity.y = -900
+	velocity.x = x
+	velocity.x = clamp(velocity.x, -1500, 1500)
 
 func _physics_process(delta):
 	# Animations
@@ -17,7 +23,6 @@ func _physics_process(delta):
 		sprite_2d.animation = "running"
 	else:
 		sprite_2d.animation = "default"
-	
 	
 	# Add the gravity.
 	if not is_on_floor():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bw5o3dl2tk3j2"]
+[gd_scene load_steps=13 format=3 uid="uid://bw5o3dl2tk3j2"]
 
 [ext_resource type="Script" path="res://scenes/levels/GameManager.gd" id="1_c2h8s"]
 [ext_resource type="Texture2D" uid="uid://08kpxtpehoog" path="res://assets/background/Blue.png" id="2_ll6gx"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://cs4rpehetlchc" path="res://scenes/game_objects/finish.tscn" id="5_75f7y"]
 [ext_resource type="PackedScene" uid="uid://brhkql4utw3rj" path="res://scenes/levels/level3.tscn" id="6_opowi"]
 [ext_resource type="PackedScene" uid="uid://c2tcfrqrsjb3d" path="res://scenes/game_objects/collectable.tscn" id="7_4xfc2"]
-[ext_resource type="PackedScene" uid="uid://buhr4u4c0n8le" path="res://scenes/game_objects/ui.tscn" id="8_vo7wx"]
+[ext_resource type="Texture2D" uid="uid://bqykh35lfctnt" path="res://assets/game_elements/heart.png" id="8_8rmlw"]
+[ext_resource type="PackedScene" uid="uid://o5o3ltcc5b7x" path="res://scenes/game_objects/pause.tscn" id="8_vo7wx"]
+[ext_resource type="PackedScene" uid="uid://cxismvj5psl4n" path="res://scenes/game_objects/enemy.tscn" id="10_dhbus"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t62qa"]
 texture = ExtResource("3_le8hb")
@@ -584,7 +586,7 @@ sources/0 = SubResource("TileSetAtlasSource_t62qa")
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("hearts")]
 unique_name_in_owner = true
 script = ExtResource("1_c2h8s")
-hearts = [null, null, null]
+hearts = [NodePath("../UI/Hearts/HBoxContainer/Heart"), NodePath("../UI/Hearts/HBoxContainer/Heart2"), NodePath("../UI/Hearts/HBoxContainer/Heart3")]
 
 [node name="Scene Objects" type="Node" parent="."]
 
@@ -815,4 +817,66 @@ position = Vector2(4682, 362)
 [node name="Collectable67" parent="CollectablesGroup" instance=ExtResource("7_4xfc2")]
 position = Vector2(3864, 458)
 
-[node name="UI" parent="." instance=ExtResource("8_vo7wx")]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="UI"]
+offset_left = 28.0
+offset_top = 19.0
+offset_right = 257.0
+offset_bottom = 101.0
+
+[node name="PointsLabel" type="Label" parent="UI/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Points: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hearts" type="Panel" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -213.0
+offset_top = 19.0
+offset_right = -27.0
+offset_bottom = 97.0
+grow_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Hearts"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 12.0
+offset_right = 182.0
+offset_bottom = 66.0
+
+[node name="Heart" type="TextureRect" parent="UI/Hearts/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("8_8rmlw")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="UI/Hearts/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("8_8rmlw")
+expand_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="UI/Hearts/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("8_8rmlw")
+expand_mode = 2
+
+[node name="Pause" parent="UI" instance=ExtResource("8_vo7wx")]
+
+[node name="Enemy" parent="." instance=ExtResource("10_dhbus")]
+position = Vector2(430, 397)
+
+[node name="Enemy2" parent="." instance=ExtResource("10_dhbus")]
+position = Vector2(840, 397)
