@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://grrac7jslgp5"
-path="res://.godot/imported/Green.png-c8cb3fa3b8c1a08968c5f808f33c2317.ctex"
+uid="uid://c4an0gwuiir12"
+path="res://.godot/imported/MorningLayer2.png-70751dbbce4444110c76991b8801b3f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background/Green.png"
-dest_files=["res://.godot/imported/Green.png-c8cb3fa3b8c1a08968c5f808f33c2317.ctex"]
+source_file="res://assets/background/PineForestParallax/MorningLayer2.png"
+dest_files=["res://.godot/imported/MorningLayer2.png-70751dbbce4444110c76991b8801b3f7.ctex"]
 
 [params]
 

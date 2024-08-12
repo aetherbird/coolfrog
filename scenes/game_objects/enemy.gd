@@ -16,7 +16,7 @@ func _on_area_2d_body_entered(body):
 			game_manager.decrease_health()
 			if abs(x_delta) < 50:
 				x_delta = 50 if x_delta >= 0 else -50
-			body.jump_side(x_delta * 10)
+			body.jump_side((x_delta) * 10)
 				# body.jump_side(750)
 			#else:
 				#body.jump_side(-750)
