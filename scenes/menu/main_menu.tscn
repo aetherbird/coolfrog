@@ -1,35 +1,106 @@
-[gd_scene load_steps=4 format=3 uid="uid://de3v5gtwma88n"]
+[gd_scene load_steps=12 format=3 uid="uid://de3v5gtwma88n"]
 
 [ext_resource type="Script" path="res://scenes/menu/main_menu.gd" id="1_8qfqq"]
-[ext_resource type="Texture2D" uid="uid://c26bnn46igdtw" path="res://assets/background/Gray.png" id="2_tws0g"]
+[ext_resource type="Texture2D" uid="uid://grrac7jslgp5" path="res://assets/background/Green.png" id="2_dsweu"]
 [ext_resource type="Texture2D" uid="uid://cnv5pn30a55ly" path="res://assets/menu/cooltext463701850106935.png" id="3_gvdmp"]
+[ext_resource type="AudioStream" uid="uid://dnit11oaae2wa" path="res://assets/audio/sound_effects/cool-frog-snes-retro-compressed.wav" id="4_6lto5"]
+[ext_resource type="Texture2D" uid="uid://ccesk1l4arjeq" path="res://assets/background/64x64_black_square.png" id="4_lpdjo"]
+[ext_resource type="AudioStream" uid="uid://dpve0w1r16jyt" path="res://assets/audio/sound_effects/cool-frog-intro-drum-fill.wav" id="5_rqli1"]
+[ext_resource type="AudioStream" uid="uid://cjg47gb22mhvd" path="res://assets/audio/sound_effects/cool-frog-intro-song.wav" id="6_dxfhe"]
+
+[sub_resource type="Animation" id="Animation_uhlhg"]
+resource_name = "BG_Scroll"
+length = 1.4
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gyi3d"]
+_data = {
+"BG_Scroll": SubResource("Animation_uhlhg")
+}
+
+[sub_resource type="Animation" id="Animation_a2v0e"]
+resource_name = "PulsingEffect"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.08, 1.08), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k3ca6"]
+_data = {
+"PulsingEffect": SubResource("Animation_a2v0e")
+}
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_8qfqq")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="BlackOpen" type="TextureRect" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_tws0g")
+pivot_offset = Vector2(-561.721, 0)
+texture = ExtResource("4_lpdjo")
 stretch_mode = 1
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BlackOpen"]
+libraries = {
+"": SubResource("AnimationLibrary_gyi3d")
+}
+
+[node name="TitleBG" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-561.721, 0)
+texture = ExtResource("2_dsweu")
+stretch_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TitleBG"]
+libraries = {
+"": SubResource("AnimationLibrary_gyi3d")
+}
+autoplay = "BG_Scroll"
+
+[node name="TitleLogo" type="TextureRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -270.5
-offset_top = -126.5
-offset_right = 270.5
-offset_bottom = -13.5
+offset_left = -270.0
+offset_top = -189.0
+offset_right = 271.0
+offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(200, 40)
 texture = ExtResource("3_gvdmp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TitleLogo"]
+libraries = {
+"": SubResource("AnimationLibrary_k3ca6")
+}
+autoplay = "PulsingEffect"
 
 [node name="level1" type="Button" parent="."]
 anchors_preset = 8
@@ -77,6 +148,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "Level 3"
+
+[node name="AudioStreamTitle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6lto5")
+
+[node name="AudioStreamPlayerDrumFill" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rqli1")
+
+[node name="AudioStreamPlayerTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_dxfhe")
 
 [connection signal="pressed" from="level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="level2" to="." method="_on_level_2_pressed"]
