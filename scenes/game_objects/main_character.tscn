@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cb53rrqwfks1j"]
+[gd_scene load_steps=46 format=3 uid="uid://cb53rrqwfks1j"]
 
 [ext_resource type="Script" path="res://scenes/game_objects/main_character.gd" id="1_a4uks"]
 [ext_resource type="Texture2D" uid="uid://c6mmc3sekhlat" path="res://assets/character/Idle (32x32).png" id="2_0x11q"]
@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dmdwjpbyyx6wa" path="res://assets/character/Double Jump (32x32).png" id="3_cestq"]
 [ext_resource type="Texture2D" uid="uid://dc5dvwb64jgv6" path="res://assets/character/Jump (32x32).png" id="3_gq57m"]
 [ext_resource type="Texture2D" uid="uid://ig5qgvc163hk" path="res://assets/character/Run (32x32).png" id="4_d8qjq"]
+[ext_resource type="AudioStream" uid="uid://b0svyidskiecg" path="res://assets/audio/sound_effects/jump_1.wav" id="7_ngnpm"]
+[ext_resource type="AudioStream" uid="uid://58wbg556emu6" path="res://assets/audio/sound_effects/double_jump.wav" id="8_m867w"]
+[ext_resource type="AudioStream" uid="uid://dyuryxm7u4mym" path="res://assets/audio/sound_effects/token_clank.wav" id="9_4rdcm"]
+[ext_resource type="AudioStream" uid="uid://de3dfo334dhxq" path="res://assets/audio/sound_effects/game_app_bounce.wav" id="10_r6j7a"]
+[ext_resource type="AudioStream" uid="uid://cpj8bfrxbmcig" path="res://assets/audio/sound_effects/game_frog.wav" id="11_unuhd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_230sp"]
 atlas = ExtResource("2_0x11q")
@@ -239,6 +244,43 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3hmon"]
 size = Vector2(29.5, 38)
 
+[sub_resource type="Animation" id="Animation_jui8u"]
+resource_name = "red_strobe"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.156863, 0.156863, 0), Color(1, 0.156863, 0.156863, 0.772549), Color(1, 0.156863, 0.156863, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_erojw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.156863, 0.156863, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mwgye"]
+_data = {
+"RESET": SubResource("Animation_erojw"),
+"red_strobe": SubResource("Animation_jui8u")
+}
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_a4uks")
 particle = ExtResource("2_yfdwb")
@@ -258,3 +300,38 @@ shape = SubResource("RectangleShape2D_3hmon")
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 position_smoothing_speed = 14.0
+
+[node name="AudioStreamJump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ngnpm")
+volume_db = -14.054
+
+[node name="AudioStreamDoubleJump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_m867w")
+volume_db = -14.055
+
+[node name="AudioStreamTokenClank" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_4rdcm")
+
+[node name="AudioStreamBounce" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_r6j7a")
+volume_db = -14.054
+
+[node name="AudioStreamCFHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_unuhd")
+volume_db = -14.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(8800, 4400)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.156863, 0.156863, 0)
+
+[node name="AnimationPlayerFlashRed" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mwgye")
+}
+
+[node name="hit_timer" type="Timer" parent="."]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://cxismvj5psl4n"]
+[gd_scene load_steps=21 format=3 uid="uid://cxismvj5psl4n"]
 
 [ext_resource type="Script" path="res://scenes/game_objects/enemy.gd" id="1_lc7gs"]
 [ext_resource type="Texture2D" uid="uid://wilxxjroo08g" path="res://assets/mush_idle (32x32).png" id="1_ujtb1"]
+[ext_resource type="AudioStream" uid="uid://de3dfo334dhxq" path="res://assets/audio/sound_effects/game_app_bounce.wav" id="3_o28g5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fmo8e"]
 atlas = ExtResource("1_ujtb1")
@@ -129,6 +130,9 @@ frame_progress = 0.803074
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 13)
 shape = SubResource("RectangleShape2D_bks2v")
+
+[node name="AudioStreamBounce" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_o28g5")
 
 [node name="Area2D" type="Area2D" parent="."]
 

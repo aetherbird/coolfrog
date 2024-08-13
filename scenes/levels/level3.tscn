@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://brhkql4utw3rj"]
+[gd_scene load_steps=15 format=3 uid="uid://brhkql4utw3rj"]
 
 [ext_resource type="Script" path="res://scenes/levels/GameManager.gd" id="1_x5fgc"]
 [ext_resource type="Texture2D" uid="uid://c26bnn46igdtw" path="res://assets/background/Gray.png" id="2_7id8q"]
+[ext_resource type="AudioStream" uid="uid://dyuryxm7u4mym" path="res://assets/audio/sound_effects/token_clank.wav" id="2_gwmsw"]
 [ext_resource type="Texture2D" uid="uid://cl1mqrfywgjrv" path="res://assets/terrain/Terrain (16x16).png" id="3_ckw7l"]
 [ext_resource type="PackedScene" uid="uid://cb53rrqwfks1j" path="res://scenes/game_objects/main_character.tscn" id="4_a86yt"]
 [ext_resource type="PackedScene" uid="uid://cs4rpehetlchc" path="res://scenes/game_objects/finish.tscn" id="5_4b2k2"]
@@ -537,6 +538,9 @@ sources/0 = SubResource("TileSetAtlasSource_t62qa")
 unique_name_in_owner = true
 script = ExtResource("1_x5fgc")
 hearts = [NodePath("../UI/Hearts/HBoxContainer/Heart"), NodePath("../UI/Hearts/HBoxContainer/Heart2"), NodePath("../UI/Hearts/HBoxContainer/Heart3")]
+
+[node name="AudioStreamTokenClank" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("2_gwmsw")
 
 [node name="Scene Objects" type="Node" parent="."]
 

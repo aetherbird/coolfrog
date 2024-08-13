@@ -21,3 +21,4 @@ func add_point():
 	points += 1
 	print(points)
 	points_label.text =  "Points: " + str(points)
+	$AudioStreamTokenClank.play()

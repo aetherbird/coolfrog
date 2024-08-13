@@ -7,6 +7,6 @@ drive = 0.35
 post_gain = -20.0
 
 [resource]
-bus/0/volume_db = -1.32149
+bus/0/volume_db = -0.328256
 bus/0/effect/0/effect = SubResource("AudioEffectDistortion_2roqn")
-bus/0/effect/0/enabled = true
+bus/0/effect/0/enabled = false

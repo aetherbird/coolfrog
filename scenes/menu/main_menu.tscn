@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cnv5pn30a55ly" path="res://assets/menu/cooltext463701850106935.png" id="3_gvdmp"]
 [ext_resource type="AudioStream" uid="uid://dnit11oaae2wa" path="res://assets/audio/sound_effects/cool-frog-snes-retro-compressed.wav" id="4_6lto5"]
 [ext_resource type="Texture2D" uid="uid://ccesk1l4arjeq" path="res://assets/background/64x64_black_square.png" id="4_lpdjo"]
-[ext_resource type="AudioStream" uid="uid://dpve0w1r16jyt" path="res://assets/audio/sound_effects/cool-frog-intro-drum-fill.wav" id="5_rqli1"]
-[ext_resource type="AudioStream" uid="uid://cjg47gb22mhvd" path="res://assets/audio/sound_effects/cool-frog-intro-song.wav" id="6_dxfhe"]
+[ext_resource type="AudioStream" uid="uid://dpve0w1r16jyt" path="res://assets/audio/music/cool-frog-intro-drum-fill.wav" id="6_dcaxf"]
+[ext_resource type="AudioStream" uid="uid://cjg47gb22mhvd" path="res://assets/audio/music/cool-frog-intro-song.wav" id="7_e18ia"]
 
 [sub_resource type="Animation" id="Animation_uhlhg"]
 resource_name = "BG_Scroll"
@@ -168,10 +168,10 @@ text = "Level 3"
 stream = ExtResource("4_6lto5")
 
 [node name="AudioStreamPlayerDrumFill" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_rqli1")
+stream = ExtResource("6_dcaxf")
 
 [node name="AudioStreamPlayerTheme" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_dxfhe")
+stream = ExtResource("7_e18ia")
 
 [connection signal="pressed" from="level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="level2" to="." method="_on_level_2_pressed"]

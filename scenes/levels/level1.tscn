@@ -1,6 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://chwyi0x1ese2q"]
+[gd_scene load_steps=24 format=3 uid="uid://chwyi0x1ese2q"]
 
+[ext_resource type="Script" path="res://scenes/levels/level1.gd" id="1_3an8h"]
 [ext_resource type="Script" path="res://scenes/levels/GameManager.gd" id="1_flqdn"]
+[ext_resource type="AudioStream" uid="uid://dyuryxm7u4mym" path="res://assets/audio/sound_effects/token_clank.wav" id="3_3hqej"]
 [ext_resource type="Texture2D" uid="uid://bk1qiyem7eh8p" path="res://assets/terrain/colored_tiles_256x256.png" id="3_h48x4"]
 [ext_resource type="Texture2D" uid="uid://cl1mqrfywgjrv" path="res://assets/terrain/Terrain (16x16).png" id="3_mockm"]
 [ext_resource type="PackedScene" uid="uid://cb53rrqwfks1j" path="res://scenes/game_objects/main_character.tscn" id="4_0h620"]
@@ -13,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://bqykh35lfctnt" path="res://assets/game_elements/heart.png" id="10_2ppkg"]
 [ext_resource type="Texture2D" uid="uid://d2p3ngtff22f1" path="res://assets/background/PineForestParallax/MorningLayer1.png" id="10_45y62"]
 [ext_resource type="PackedScene" uid="uid://o5o3ltcc5b7x" path="res://scenes/game_objects/pause.tscn" id="11_r4yey"]
+[ext_resource type="AudioStream" uid="uid://b1i8iixuxk2xv" path="res://assets/audio/sound_effects/retro_croak_final.wav" id="15_uouug"]
+[ext_resource type="AudioStream" uid="uid://b5kvaq73ws67b" path="res://assets/audio/music/van_elephant_labradors.mp3" id="16_k1mao"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j8nqb"]
 load_path = "res://.godot/imported/Green.png-c8cb3fa3b8c1a08968c5f808f33c2317.ctex"
@@ -1551,11 +1555,15 @@ texture = ExtResource("3_h48x4")
 sources/0 = SubResource("TileSetAtlasSource_83fda")
 
 [node name="Node" type="Node"]
+script = ExtResource("1_3an8h")
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("hearts")]
 unique_name_in_owner = true
 script = ExtResource("1_flqdn")
 hearts = [NodePath("../UI/Hearts/HBoxContainer/Heart"), NodePath("../UI/Hearts/HBoxContainer/Heart2"), NodePath("../UI/Hearts/HBoxContainer/Heart3")]
+
+[node name="AudioStreamTokenClank" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("3_3hqej")
 
 [node name="Scene Objects" type="Node" parent="."]
 
@@ -1992,3 +2000,11 @@ position = Vector2(1939, -306)
 
 [node name="Collectable44" parent="." instance=ExtResource("5_8idfc")]
 position = Vector2(1951, -344)
+
+[node name="AudioStreamPlayerFrog" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_uouug")
+volume_db = -0.937
+
+[node name="AudioStreamPlayerL1Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_k1mao")
+volume_db = -8.874
