@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://chwyi0x1ese2q"]
+[gd_scene load_steps=28 format=3 uid="uid://chwyi0x1ese2q"]
 
 [ext_resource type="Script" path="res://scenes/levels/level1.gd" id="1_3an8h"]
 [ext_resource type="Script" path="res://scenes/levels/GameManager.gd" id="1_flqdn"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bk1qiyem7eh8p" path="res://assets/terrain/colored_tiles_256x256.png" id="3_h48x4"]
 [ext_resource type="Texture2D" uid="uid://cl1mqrfywgjrv" path="res://assets/terrain/Terrain (16x16).png" id="3_mockm"]
 [ext_resource type="PackedScene" uid="uid://cb53rrqwfks1j" path="res://scenes/game_objects/main_character.tscn" id="4_0h620"]
+[ext_resource type="AudioStream" uid="uid://cgexby7tt1xt4" path="res://assets/audio/sound_effects/game_over_quick.wav" id="4_g00v1"]
 [ext_resource type="PackedScene" uid="uid://c2tcfrqrsjb3d" path="res://scenes/game_objects/collectable.tscn" id="5_8idfc"]
 [ext_resource type="PackedScene" uid="uid://cs4rpehetlchc" path="res://scenes/game_objects/finish.tscn" id="6_6yxbn"]
 [ext_resource type="PackedScene" uid="uid://bw5o3dl2tk3j2" path="res://scenes/levels/level2.tscn" id="7_sp43x"]
@@ -17,6 +18,43 @@
 [ext_resource type="PackedScene" uid="uid://o5o3ltcc5b7x" path="res://scenes/game_objects/pause.tscn" id="11_r4yey"]
 [ext_resource type="AudioStream" uid="uid://b1i8iixuxk2xv" path="res://assets/audio/sound_effects/retro_croak_final.wav" id="15_uouug"]
 [ext_resource type="AudioStream" uid="uid://b5kvaq73ws67b" path="res://assets/audio/music/van_elephant_labradors.mp3" id="16_k1mao"]
+
+[sub_resource type="Animation" id="Animation_5jmlt"]
+resource_name = "AnimationPlayerFadeBlack"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.392157, 0.392157, 0.392157, 0), Color(0.392157, 0.392157, 0.392157, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_33aq5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.393086, 0.393086, 0.393085, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kgpfi"]
+_data = {
+"AnimationPlayerFadeBlack": SubResource("Animation_5jmlt"),
+"RESET": SubResource("Animation_33aq5")
+}
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j8nqb"]
 load_path = "res://.godot/imported/Green.png-c8cb3fa3b8c1a08968c5f808f33c2317.ctex"
@@ -1565,6 +1603,22 @@ hearts = [NodePath("../UI/Hearts/HBoxContainer/Heart"), NodePath("../UI/Hearts/H
 [node name="AudioStreamTokenClank" type="AudioStreamPlayer" parent="GameManager"]
 stream = ExtResource("3_3hqej")
 
+[node name="AudioStreamDied" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("4_g00v1")
+volume_db = -2.811
+
+[node name="ColorRect" type="ColorRect" parent="GameManager"]
+visible = false
+custom_minimum_size = Vector2(8800, 4400)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.393086, 0.393086, 0.393085, 1)
+
+[node name="AnimationPlayerFadeEnd" type="AnimationPlayer" parent="GameManager"]
+libraries = {
+"": SubResource("AnimationLibrary_kgpfi")
+}
+
 [node name="Scene Objects" type="Node" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="Scene Objects"]
@@ -2006,5 +2060,6 @@ stream = ExtResource("15_uouug")
 volume_db = -0.937
 
 [node name="AudioStreamPlayerL1Music" type="AudioStreamPlayer" parent="."]
+process_mode = 1
 stream = ExtResource("16_k1mao")
 volume_db = -8.874

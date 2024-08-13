@@ -1,5 +1,6 @@
 extends Node
 
+@onready var character_body_2d = $"."
 @onready var points_label = %PointsLabel
 @export var hearts : Array[Node]
 
@@ -15,6 +16,10 @@ func decrease_health():
 		else:
 			hearts[h].hide()
 	if (lives == 0):
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
+		$AudioStreamDied.play()
+		await get_tree().create_timer(1.0).timeout
 		get_tree().reload_current_scene()
 
 func add_point():

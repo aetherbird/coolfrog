@@ -2,6 +2,7 @@ extends Node
 
 func _ready():
 	$AudioStreamPlayerL1Music.play()
+	
 	# Play the drum fill
 	# $AudioStreamPlayerFrog.play()
 	

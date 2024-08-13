@@ -10,10 +10,12 @@ func _process(delta):
 
 func pauseMenu():
 		if paused:
+			AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
 			pause_panel.hide()
 			Engine.time_scale = 1
 		else:
 			pause_panel.show()
+			AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 			Engine.time_scale = 0
 		paused = !paused
 
