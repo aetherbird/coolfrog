@@ -14,4 +14,7 @@ func _process(delta):
 func _on_body_entered(body):
 	print("Touched " + body.name)
 	if (body.name == "CharacterBody2D"):
+		$AudioStreamDied.play()
+		$AnimationFadeOut.play("fade_out")
+		await get_tree().create_timer(1.0).timeout
 		get_tree().reload_current_scene()

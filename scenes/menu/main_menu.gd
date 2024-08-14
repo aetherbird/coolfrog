@@ -8,17 +8,22 @@ func _ready():
 	# Connect the "finished" signal directly to the theme player
 	$AudioStreamPlayerDrumFill.finished.connect(self._on_DrumFill_finished)
 
+func _input(event):
+	if Input.is_action_just_pressed("ui_accept"):
+		get_tree().change_scene_to_file("res://scenes/levels/level3.tscn")
+		
 func _on_DrumFill_finished():
 	# Play the theme music after the drum fill is done
 	$AudioStreamPlayerTheme.play()
 
-func _on_level_1_pressed():
+# Code for old buttons
+#func _on_level_1_pressed():
 	#LevelOpening.transition()
 	#await LevelOpening.on_transition_finished
-	get_tree().change_scene_to_file("res://scenes/levels/level1.tscn")
+	#get_tree().change_scene_to_file("res://scenes/levels/level1.tscn")
 
-func _on_level_2_pressed():
-	get_tree().change_scene_to_file("res://scenes/levels/level2.tscn")
+#func _on_level_2_pressed():
+	#get_tree().change_scene_to_file("res://scenes/levels/level2.tscn")
 
-func _on_level_3_pressed():
-	get_tree().change_scene_to_file("res://scenes/levels/level3.tscn")
+#func _on_level_3_pressed():
+	#get_tree().change_scene_to_file("res://scenes/levels/level3.tscn")
