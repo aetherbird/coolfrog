@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://d2p3ngtff22f1" path="res://assets/background/PineForestParallax/MorningLayer1.png" id="10_45y62"]
 [ext_resource type="PackedScene" uid="uid://o5o3ltcc5b7x" path="res://scenes/game_objects/pause.tscn" id="11_r4yey"]
 [ext_resource type="AudioStream" uid="uid://b1i8iixuxk2xv" path="res://assets/audio/sound_effects/retro_croak_final.wav" id="15_uouug"]
-[ext_resource type="AudioStream" uid="uid://b5kvaq73ws67b" path="res://assets/audio/music/van_elephant_labradors.mp3" id="16_k1mao"]
+[ext_resource type="AudioStream" uid="uid://buc1y0ndkl3ea" path="res://assets/audio/music/level_2_CF.wav" id="18_ws576"]
 
 [sub_resource type="Animation" id="Animation_5jmlt"]
 resource_name = "AnimationPlayerFadeBlack"
@@ -2061,5 +2061,5 @@ volume_db = -0.937
 
 [node name="AudioStreamPlayerL1Music" type="AudioStreamPlayer" parent="."]
 process_mode = 1
-stream = ExtResource("16_k1mao")
-volume_db = -8.874
+stream = ExtResource("18_ws576")
+volume_db = -5.126

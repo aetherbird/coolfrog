@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://doql6m7847t8a"
+path="res://.godot/imported/Toby Walker - Bounce Chronicles.wav-2224f9e0c71f479f0c892aa55096e903.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/Toby Walker - Bounce Chronicles.wav"
+dest_files=["res://.godot/imported/Toby Walker - Bounce Chronicles.wav-2224f9e0c71f479f0c892aa55096e903.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

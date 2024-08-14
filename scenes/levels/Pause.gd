@@ -20,8 +20,10 @@ func pauseMenu():
 		paused = !paused
 
 func _on_resume_pressed():
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
 	pauseMenu()
 
 func _on_menu_pressed():
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
 	Engine.time_scale = 1
 	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
