@@ -10,7 +10,7 @@ func _ready():
 
 func _input(event):
 	if Input.is_action_just_pressed("ui_accept"):
-		get_tree().change_scene_to_file("res://scenes/levels/level3.tscn")
+		get_tree().change_scene_to_file("res://scenes/levels/level1.tscn")
 		
 func _on_DrumFill_finished():
 	# Play the theme music after the drum fill is done
